@@ -1,0 +1,20 @@
+{
+  "name": "ecommerce-admin-panel",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "node server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "postcss": "^8.5.6",
+    "react-router-dom": "^7.6.2",
+    "tailwindcss": "^4.1.10"
+  }
+}
