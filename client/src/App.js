@@ -15,35 +15,50 @@ import AddProduct from './pages/AddProduct';
 import DeletedLogs from './pages/DeletedLogs';
 import AdminBannerUpload from './pages/AdminBannerUpload';
 import ReviewApprovalPage from './pages/ReviewApprovalPage';
+import { Navigate } from 'react-router-dom';
+
+// ✅ AdminOnlyRoute: only allow ID === 1
+function AdminOnlyRoute({ children }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log('User:', user);
+  return user && user.UserId === 1 ? children : <Navigate to="/" />;
+}
+
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Login Page */}
+        {/* ✅ Public Route */}
         <Route path="/" element={<Login />} />
 
-        {/* Protected Routes inside layout */}
+        {/* ✅ Admin Protected Routes under /admin */}
         <Route
-          path="/"
+          path="/admin/*"
           element={
             <ProtectedRoute>
-              <DashboardLayout />
+              <AdminOnlyRoute>
+                <DashboardLayout />
+              </AdminOnlyRoute>
             </ProtectedRoute>
           }
         >
+          <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<ProductList />} />
           <Route path="reports" element={<Reports />} />
           <Route path="logout" element={<Logout />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/AddCategory" element={<AddCategory />} />
-          <Route path="/AddProduct" element={<AddProduct />} />
-          <Route path="/DeletedLogs" element={<DeletedLogs />} />
-           <Route path="/AdminBannerUpload" element={<AdminBannerUpload />} />
-           <Route path="/ReviewApprovalPage" element={<ReviewApprovalPage />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="payment" element={<Payment />} />
+          <Route path="AddCategory" element={<AddCategory />} />
+          <Route path="AddProduct" element={<AddProduct />} />
+          <Route path="DeletedLogs" element={<DeletedLogs />} />
+          <Route path="AdminBannerUpload" element={<AdminBannerUpload />} />
+          <Route path="ReviewApprovalPage" element={<ReviewApprovalPage />} />
         </Route>
+
+        {/* Optional: Catch-all for unknown routes */}
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </Router>
   );

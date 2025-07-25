@@ -10,6 +10,7 @@
     "axios": "^1.9.0",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.511.0",
     "msnodesqlv8": "^4.5.0",
     "mssql": "^11.0.1",

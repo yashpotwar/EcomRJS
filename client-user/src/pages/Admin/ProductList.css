@@ -1,0 +1,155 @@
+.modern-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 220px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.product-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.product-price .line-through {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.product-price .highlight {
+  color: #dc2626;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.product-price .discount {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+.stock-status {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 10px;
+}
+
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-btn.full {
+  width: 100%;
+  background-color: #1d4ed8;
+  color: white;
+  padding: 10px 0;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mini-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-btn {
+  background-color: #facc15;
+  color: #1f2937;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.rating {
+  font-size: 14px;
+  color: #facc15;
+  margin-bottom: 4px;
+}
+
+.top-rated {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #dc2626;
+}
+.edit-input {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}

@@ -41,11 +41,12 @@ const multiUpload = upload.fields([
 
 // ✅ Routes
 router.get('/', productController.getProducts);
-router.get('/:id', productController.getProductById);
-router.post('/', multiUpload, productController.createProduct); // ✅ Supports variants
+router.get('/:id/related', getRelatedProducts); // ✅ Related must come BEFORE /:id
+router.get('/:id/details', productController.getProductFullDetails);
+router.get('/:id', productController.getProductById); // ✅ Only once!
+router.post('/', multiUpload, productController.createProduct);
 router.put('/:id', productController.updateProduct);
 router.delete('/:id', productController.deleteProduct);
-router.get('/:id/details', productController.getProductFullDetails); // ✅ Product + Variants + Reviews
-router.get('/:id/related', getRelatedProducts);
+
 
 module.exports = router;

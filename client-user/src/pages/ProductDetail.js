@@ -30,7 +30,7 @@ const ProductDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}/details`).then((res) => {
+    axios.get(`http://192.168.29.71:5000/api/products/${id}/details`).then((res) => {
       const { product, variants, variantSizes } = res.data;
 
       setProduct(product);
@@ -54,7 +54,7 @@ const ProductDetail = () => {
       setSelectedColor(defaultColor);
       setSelectedSize('');
 
-      axios.get(`http://localhost:5000/api/products/${id}/related`).then((res) => {
+      axios.get(`http://192.168.29.71:5000/api/products/${id}/related`).then((res) => {
         setRelatedProducts(res.data);
       });
 
@@ -177,7 +177,7 @@ const ProductDetail = () => {
       return;
     }
 
-    await axios.post('http://localhost:5000/api/cart/add', {
+    await axios.post('http://192.168.29.71:5000/api/cart/add', {
       userId: user.ID,
       productId: id,
       quantity: 1,
@@ -214,7 +214,7 @@ const ProductDetail = () => {
             <div className="bg-white lg:rounded-lg lg:shadow-sm">
               <div className="relative w-full h-[380px] sm:h-[450px] flex items-center justify-center overflow-hidden">
                 <InnerImageZoom
-                  zoomSrc={`http://localhost:5000/uploads/${mainImage}`}
+                  zoomSrc={`http://192.168.29.71:5000/uploads/${mainImage}`}
                   zoomType="hover"
                   zoomPreload={true}
                   zoomScale={1.5}
@@ -227,7 +227,7 @@ const ProductDetail = () => {
                 {thumbnails.map((img, i) => (
                   <img
                     key={i}
-                    src={`http://localhost:5000/uploads/${img}`}
+                    src={`http://192.168.29.71:5000/uploads/${img}`}
                     alt={`thumb-${i}`}
                     className={`w-16 h-16 object-cover border rounded cursor-pointer flex-shrink-0 ${
                       mainImage === img ? 'ring-2 ring-blue-500' : ''
@@ -269,7 +269,7 @@ const ProductDetail = () => {
                   {uniqueColors.map(([color, img], idx) => (
                     <div key={idx} onClick={() => setSelectedColor(color)} className="cursor-pointer text-center">
                       <img
-                        src={`http://localhost:5000/uploads/${img}`}
+                        src={`http://192.168.29.71:5000/uploads/${img}`}
                         alt={color}
                         title={color}
                         className={`w-16 h-20 object-cover border-2 rounded ${selectedColor === color ? 'border-blue-500' : 'border-gray-300'}`}
@@ -419,7 +419,7 @@ const ProductDetail = () => {
                     className="bg-white rounded-lg shadow-sm hover:shadow-lg transition duration-200 p-3 cursor-pointer"
                     onClick={() => navigate(`/product/${item.ID}`)}
                   >
-                    <img src={`http://localhost:5000/uploads/${item.ImagePath}`} alt={item.Name} className="w-full h-40 object-contain mb-2"/>
+                    <img src={`http://192.168.29.71:5000/uploads/${item.ImagePath}`} alt={item.Name} className="w-full h-40 object-contain mb-2"/>
                     <h3 className="text-sm font-semibold text-gray-800 truncate">{item.Name}</h3>
                     <div className="text-red-600 font-bold text-md mt-1">₹{discounted}</div>
                     {item.Discount > 0 && <div className="text-xs text-gray-500 line-through">₹{item.Price}</div>}
@@ -435,7 +435,7 @@ const ProductDetail = () => {
           <Lightbox
             open={isOpen}
             close={() => setIsOpen(false)}
-            slides={thumbnails.map((img) => ({ src: `http://localhost:5000/uploads/${img}` }))}
+            slides={thumbnails.map((img) => ({ src: `http://192.168.29.71:5000/uploads/${img}` }))}
             index={thumbnails.findIndex((img) => img === mainImage)}
           />
         )}

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
@@ -48,10 +50,21 @@ app.use('/api/subcategories', subCategoryRoutes);
 app.use('/api/deleted-logs', deletedLogsRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/api/products', reviewRoutes);
-app.use('/api/orders', order.routes);
-
+app.use('/api/orders', orderRoutes);
+// app.use('/api', orderRoutes);
 
 // ✅ Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+
+
+// Serve React static files (production build)
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+// Catch-all route for React frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });

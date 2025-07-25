@@ -26,7 +26,7 @@ const OtpConfirmPage = () => {
     if (fullOtp.length !== 4) return alert('Enter 4-digit OTP');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/orders/place', orderData);
+      const res = await axios.post('http://192.168.29.71:5000/api/orders/place', orderData);
       if (res.status === 200) {
         navigate('/order-success');
       }

@@ -22,11 +22,11 @@ const Dashboard = () => {
   const user = JSON.parse(sessionStorage.getItem('user'));
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('http://192.168.29.71:5000/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error('Error loading products:', err));
 
-    axios.get('http://localhost:5000/api/categories')
+    axios.get('http://192.168.29.71:5000/api/categories')
       .then(res => setCategories(res.data))
       .catch(err => console.error('Error loading categories:', err));
   }, []);
@@ -34,7 +34,7 @@ const Dashboard = () => {
   const handleAddToCart = async (productId) => {
     if (!user) return navigate('/login');
     try {
-      await axios.post('http://localhost:5000/api/cart/add', {
+      await axios.post('http://192.168.29.71:5000/api/cart/add', {
         userId: user.ID,
         productId,
         quantity: 1
@@ -102,7 +102,7 @@ const Dashboard = () => {
           return (
             <div key={product.ID} className="border rounded-lg shadow hover:shadow-md overflow-hidden bg-white">
               <img
-                src={`http://localhost:5000/uploads/${product.ImagePath}`}
+                src={`http://192.168.29.71:5000/uploads/${product.ImagePath}`}
                 alt={product.Name}
                 className="w-full h-48 object-cover"
               />

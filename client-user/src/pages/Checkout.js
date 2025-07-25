@@ -19,7 +19,7 @@ const Checkout = () => {
 
   const fetchCart = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const res = await axios.get(`http://192.168.29.71:5000/api/cart/${userId}`);
       setCartItems(res.data);
       const sum = res.data.reduce((acc, item) => acc + item.price * item.quantity, 0);
       setTotal(sum);
@@ -43,7 +43,7 @@ const Checkout = () => {
         }))
       };
 
-      await axios.post('http://localhost:5000/api/orders/place', order);
+      await axios.post('http://192.168.29.71:5000/api/orders/place', order);
       alert('✅ Order placed successfully!');
       navigate('/');
     } catch (err) {
@@ -70,7 +70,7 @@ const Checkout = () => {
           {cartItems.map((item, i) => (
             <div key={i} className="flex items-center gap-4 border-b py-3">
               <img
-                src={`http://localhost:5000/uploads/${item.imagePath}`}
+                src={`http://192.168.29.71:5000/uploads/${item.imagePath}`}
                 alt={item.productName}
                 className="w-20 h-20 object-contain border rounded"
               />

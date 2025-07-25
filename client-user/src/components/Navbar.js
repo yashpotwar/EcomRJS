@@ -8,7 +8,7 @@ const Navbar = () => {
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem('user'));
     if (user) {
-      axios.get(`http://localhost:5000/api/cart/${user.ID}`)
+      axios.get(`http://192.168.29.71:5000/api/cart/${user.ID}`)
         .then(res => setCartCount(res.data.length))
         .catch(err => console.error('Cart fetch error', err));
     }

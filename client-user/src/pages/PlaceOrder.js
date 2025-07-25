@@ -21,7 +21,7 @@ const PlaceOrder = () => {
 
   const fetchCart = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const res = await axios.get(`http://192.168.29.71:5000/api/cart/${userId}`);
       setCartItems(res.data);
     } catch (err) {
       console.error('Error fetching cart', err);
@@ -43,7 +43,7 @@ const PlaceOrder = () => {
 
     // Place the order
     try {
-      const res = await axios.post('http://localhost:5000/api/orders/place', {
+      const res = await axios.post('http://192.168.29.71:5000/api/orders/place', {
         userId: user.ID,
         deliveryAddress: address,
       });

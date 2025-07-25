@@ -2,10 +2,11 @@ const { sql, pool, poolConnect } = require('../config/db');
 
 const placeOrder = async (req, res) => {
   const { userId, address, items, totalAmount } = req.body;
+   let transaction; 
 
   try {
     await poolConnect;
-    const transaction = new sql.Transaction(pool);
+    transaction = new sql.Transaction(pool);
     await transaction.begin();
 
     const orderRequest = new sql.Request(transaction);

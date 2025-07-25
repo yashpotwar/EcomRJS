@@ -10,7 +10,7 @@ const MyOrderPage = () => {
 
   useEffect(() => {
     if (orderId) {
-      axios.get(`http://localhost:5000/api/orders/${orderId}`)
+      axios.get(`http://192.168.29.71:5000/api/orders/${orderId}`)
         .then(res => setOrder(res.data))
         .catch(err => console.error('Order fetch failed:', err));
     }
@@ -29,7 +29,7 @@ const MyOrderPage = () => {
       <div className="mt-6 space-y-4">
         {order.Items?.map(item => (
           <div key={item.ID} className="bg-white p-4 rounded shadow flex items-center gap-4">
-            <img src={`http://localhost:5000/uploads/${item.ImagePath}`} className="w-20 h-20 object-cover" />
+            <img src={`http://192.168.29.71:5000/uploads/${item.ImagePath}`} className="w-20 h-20 object-cover" />
             <div>
               <h2 className="font-bold">{item.ProductName}</h2>
               <p>Size: {item.Size}, Color: {item.Color}</p>

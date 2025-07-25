@@ -1,6 +1,6 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../utils/axiosInstance';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
@@ -15,9 +15,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/user/login', form);
+      const res = await axios.post('http://192.168.29.71:5000/api/auth/login', {
+  identifier: form.email,  // 👈 because for user it's email
+  password: form.password,
+});
+
       if (res.data.success) {
+       // localStorage.setItem('user', JSON.stringify(res.data.user));
+       
+        sessionStorage.setItem('token', res.data.token);
         sessionStorage.setItem('user', JSON.stringify(res.data.user));
+
+        //sessionStorage.setItem('user', JSON.stringify(res.data.user));
         navigate('/'); // redirect to dashboard
       } else {
         setError(res.data.message);

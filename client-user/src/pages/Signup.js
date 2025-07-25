@@ -18,7 +18,7 @@ const Signup = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/auth/user/signup', form);
+      await axios.post('http://192.168.29.71:5000/api/auth/user/signup', form);
       alert('✅ Signup successful! Please log in.');
       navigate('/login');
     } catch (err) {

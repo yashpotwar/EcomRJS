@@ -1,22 +1,36 @@
-// client-user/src/pages/Home.js
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import BannerSlider from '../components/BannerSlider'; // ✅ Ensure this file exists
+import { useNavigate, Link } from 'react-router-dom'; // <-- added Link
+import BannerSlider from '../components/BannerSlider';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ Get the logged-in user
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('http://192.168.29.71:5000/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error('Error loading products', err));
   }, []);
 
   return (
     <div className="bg-[#f1f2f4] min-h-screen pb-10">
+      
+      {/* ✅ Admin Panel Link - only visible to user with ID 1 */}
+      {user?.ID === 1 && (
+        <div className="w-full max-w-[1600px] mx-auto p-4 text-right">
+          <Link
+            to="/admin/dashboard"
+            className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            🛠️ Go to Admin Panel
+          </Link>
+        </div>
+      )}
+
       {/* 🔥 Flipkart-Style Banner Slider */}
       <div className="w-full max-w-[1600px] mx-auto mb-4">
         <BannerSlider />
@@ -41,7 +55,7 @@ const Home = () => {
               className="cursor-pointer hover:shadow-md hover:z-10 bg-white p-3 transition-all duration-300"
             >
               <img
-                src={`http://localhost:5000/uploads/${product.ImagePath}`}
+                src={`http://192.168.29.71:5000/uploads/${product.ImagePath}`}
                 alt={product.Name}
                 className="w-full h-36 object-contain mx-auto"
               />

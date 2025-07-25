@@ -6,19 +6,22 @@ const Logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-   axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true })
-      .then(() => {
-        localStorage.removeItem("userInfo");
-        localStorage.removeItem("isAdminLoggedIn");
-        navigate('/');
-      })
-      .catch(err => {
-        console.error('Logout error:', err);
-          localStorage.removeItem("userInfo");
+  axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true })
+    .then(() => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("adminInfo");
       localStorage.removeItem("isAdminLoggedIn");
-      });
-  }, [navigate]);
-
+      navigate('/');
+    })
+    .catch(err => {
+      console.error('Logout error:', err);
+      localStorage.removeItem("user");
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("adminInfo");
+      localStorage.removeItem("isAdminLoggedIn");
+    });
+}, [navigate]);
   return <p>Logging out...</p>;
 };
 

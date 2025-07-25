@@ -15,7 +15,7 @@ const Cart = () => {
 
   const fetchCart = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const res = await axios.get(`http://192.168.29.71:5000/api/cart/${userId}`);
       setCartItems(res.data);
     } catch (err) {
       console.error('Error fetching cart', err);
@@ -26,7 +26,7 @@ const Cart = () => {
     const newQty = type === 'inc' ? item.quantity + 1 : item.quantity - 1;
     if (newQty < 1) return;
     try {
-      await axios.put(`http://localhost:5000/api/cart/update/${item.id}`, {
+      await axios.put(`http://192.168.29.71:5000/api/cart/update/${item.id}`, {
         quantity: newQty
       });
       fetchCart(user.ID);
@@ -37,7 +37,7 @@ const Cart = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/delete/${id}`);
+      await axios.delete(`http://192.168.29.71:5000/api/cart/delete/${id}`);
       fetchCart(user.ID);
     } catch (err) {
       console.error('Delete failed', err);
@@ -83,7 +83,7 @@ const Cart = () => {
                   className="flex flex-col md:flex-row items-start md:items-center gap-4 px-6 py-4 border-b"
                 >
                   <img
-                    src={`http://localhost:5000/uploads/${item.imagePath}`}
+                    src={`http://192.168.29.71:5000/uploads/${item.imagePath}`}
                     alt={item.productName}
                     className="w-28 h-28 object-contain"
                   />

@@ -1,16 +1,18 @@
-const sql = require('mssql/msnodesqlv8');
+const sql = require('mssql');
 
 const config = {
-  server: 'DESKTOP-LHNRSR9\\SQLEXPRESS',
-  database: 'EcommerceDB',
-  driver: 'msnodesqlv8',
+  user: 'Ecommerce_DB', // 🔁 Your SQL login username
+  password: 'Ecommerceha34@3jn', // 🔁 Your SQL login password
+  server: 'N1NWPLSK12SQL-v01.shr.prod.ams1.secureserver.net', // 🔁 eg: 192.168.1.100 or sql.yourdomain.com
+  database: 'Ecommerce_DB',
+  port: 1433,
   options: {
-    trustedConnection: true,
+    encrypt: false, // 🔁 false if self-signed cert
     trustServerCertificate: true
   }
 };
 
 const pool = new sql.ConnectionPool(config);
-const poolConnect = pool.connect(); // ✅ Only ONCE here
+const poolConnect = pool.connect();
 
 module.exports = { sql, pool, poolConnect };

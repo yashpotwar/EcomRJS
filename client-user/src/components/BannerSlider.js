@@ -9,7 +9,7 @@ const BannerSlider = () => {
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/banners')
+    axios.get('http://192.168.29.71:5000/api/banners')
       .then(res => setBanners(res.data))
       .catch(err => console.error('Failed to load banners:', err));
   }, []);
@@ -31,7 +31,7 @@ const BannerSlider = () => {
         {banners.map((banner) => (
           <SwiperSlide key={banner.ID}>
             <img
-              src={`http://localhost:5000/uploads/${banner.ImagePath}`}
+              src={`http://192.168.29.71:5000/uploads/${banner.ImagePath}`}
               alt={banner.Title}
               className="w-full h-full object-cover"
             />

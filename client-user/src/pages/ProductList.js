@@ -8,7 +8,7 @@ const ProductList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('http://192.168.29.71:5000/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error('Error loading products', err));
   }, []);
@@ -18,7 +18,7 @@ const ProductList = () => {
     if (!user) return navigate('/login');
 
     try {
-      await axios.post('http://localhost:5000/api/cart/add', {
+      await axios.post('http://192.168.29.71:5000/api/cart/add', {
         userId: user.ID,
         productId,
         quantity: 1
@@ -48,7 +48,7 @@ const ProductList = () => {
             >
               {product.ImagePath && (
                 <img
-                  src={`http://localhost:5000/uploads/${product.ImagePath}`}
+                  src={`http://192.168.29.71:5000/uploads/${product.ImagePath}`}
                   alt={product.Name}
                   className="w-full h-48 object-cover mb-2 cursor-pointer"
                   onClick={() => navigate(`/product/${product.ID}`)}

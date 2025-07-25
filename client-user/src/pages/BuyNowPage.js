@@ -46,7 +46,7 @@ const BuyNowPage = () => {
         }];
         sessionStorage.removeItem('buyNowItem'); // Clear after fetching
       } else {
-        const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+        const res = await axios.get(`http://192.168.29.71:5000/api/cart/${userId}`);
         items = res.data.map(item => ({
           ...item,
           finalPrice: item.discount ? +(item.price - (item.price * item.discount / 100)).toFixed(2) : item.price

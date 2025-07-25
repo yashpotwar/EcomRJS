@@ -18,7 +18,7 @@ const AuthPage = () => {
     setError('');
     try {
       const endpoint = isLogin ? 'login' : 'signup';
-      const res = await axios.post(`http://localhost:5000/api/auth/user/${endpoint}`, form);
+      const res = await axios.post(`http://192.168.29.71:5000/api/auth/user/${endpoint}`, form);
 
       if (res.data.success) {
         sessionStorage.setItem('user', JSON.stringify(res.data.user || form));
